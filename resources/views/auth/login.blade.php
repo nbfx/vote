@@ -66,13 +66,13 @@
 
                     <div class="row">
                         <div class="col-md-4 col-sm-4 col-xs-4 col-md-offset-2">
-                            <a href="{{ route('redirect', ['service' => 'google']) }}" class="btn btn-block btn-social btn-google">
+                            <a href="{{ route('authRedirect', ['service' => 'google']) }}" class="btn btn-block btn-social btn-google">
                                 <span class="fab fa-google"></span> Google+
                             </a>
                         </div>
 
                         <div class="col-md-4 col-sm-4 col-xs-4">
-                            <a href="{{ route('redirect', ['service' => 'github']) }}" class="btn btn-block btn-social btn-github">
+                            <a href="{{ route('authRedirect', ['service' => 'github']) }}" class="btn btn-block btn-social btn-github">
                                 <span class="fab fa-github"></span> Github
                             </a>
                         </div>
