@@ -38,19 +38,17 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    /**
-     * Redirect the user to the GitHub authentication page.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function redirectToProviderGithub()
+    public function redirect($service)
     {
-        return Socialite::driver('github')->redirect();
+        return Socialite::driver($service)->redirect();
     }
 
-    public function handleProviderCallbackGithub()
+    public function callback($service)
     {
-        $user = Socialite::driver('github')->user();
+        $user = Socialite::with($service)->user();
+
+        return view('home')->withDetails($user)->withService($service);
+        /*$user = Socialite::driver('github')->user();
 
         // OAuth Two Providers
         $token = $user->token;
@@ -67,20 +65,6 @@ class LoginController extends Controller
         $user->getName();
         $user->getEmail();
         $user->getAvatar();
-    }
-
-    /**
-     * Redirect the user to the Google authentication page.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function redirectToProviderGoogle()
-    {
-        return Socialite::driver('google')->redirect();
-    }
-
-    public function handleProviderCallbackGoogle()
-    {
-        $user = Socialite::driver('google')->user();
+        die(var_dump($user));*/
     }
 }
