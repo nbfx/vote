@@ -51,6 +51,22 @@ class LoginController extends Controller
     public function handleProviderCallbackGithub()
     {
         $user = Socialite::driver('github')->user();
+
+        // OAuth Two Providers
+        $token = $user->token;
+        $refreshToken = $user->refreshToken; // not always provided
+        $expiresIn = $user->expiresIn;
+
+// OAuth One Providers
+        $token = $user->token;
+        $tokenSecret = $user->tokenSecret;
+
+// All Providers
+        $user->getId();
+        $user->getNickname();
+        $user->getName();
+        $user->getEmail();
+        $user->getAvatar();
     }
 
     /**
@@ -66,20 +82,5 @@ class LoginController extends Controller
     public function handleProviderCallbackGoogle()
     {
         $user = Socialite::driver('google')->user();
-    }
-
-    /**
-     * Redirect the user to the Facebook authentication page.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function redirectToProviderFacebook()
-    {
-        return Socialite::driver('facebook')->redirect();
-    }
-
-    public function handleProviderCallbackFacebook()
-    {
-        $user = Socialite::driver('facebook')->user();
     }
 }
