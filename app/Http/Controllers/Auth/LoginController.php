@@ -40,7 +40,7 @@ class LoginController extends Controller
 
     public function redirect($service)
     {
-        return Socialite::driver($service)->redirect();
+        return Socialite::driver($service)->scopes(['profile','email'])->redirect();
     }
 
     public function callback($service)
